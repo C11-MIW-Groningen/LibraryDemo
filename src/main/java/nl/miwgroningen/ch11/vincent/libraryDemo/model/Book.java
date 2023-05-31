@@ -2,10 +2,7 @@ package nl.miwgroningen.ch11.vincent.libraryDemo.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -23,7 +20,7 @@ public class Book {
     private String title;
     private String author;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Copy> copies;
 
     public int getNumberOfAvailableCopies() {

@@ -12,12 +12,16 @@
     <tr>
         <th>Title</th>
         <th>Author</th>
+        <th>Edit</th>
+        <th>Delete</th>
         <th>Available</th>
         <th>Add copy</th>
     </tr>
     <tr th:each="book : ${allBooks}">
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
+        <td><a th:href="@{/book/edit/{bookId}(bookId=${book.bookId})}">Edit</a></td>
+        <td><a th:href="@{/book/delete/{bookId}(bookId=${book.bookId})}">Delete</a></td>
         <td th:text="${book.numberOfAvailableCopies}"></td>
         <td><a th:href="@{/copy/new/{bookId}(bookId=${book.bookId})}">Buy</a></td>
     </tr>
