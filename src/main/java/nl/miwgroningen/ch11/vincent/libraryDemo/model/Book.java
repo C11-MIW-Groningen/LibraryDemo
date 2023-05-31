@@ -17,6 +17,8 @@ public class Book {
     @Id
     @GeneratedValue
     private Long bookId;
+
+    @Column(unique = true)
     private String title;
     private String author;
 

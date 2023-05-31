@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details for a Book</title>
+</head>
+<body>
+
+<h1>Details van boek: <span th:text="${bookToShowDetailsFor.title}"></span></h1>
+
+<table>
+    <tr>
+        <td>Title</td>
+        <td th:text="${bookToShowDetailsFor.title}"></td>
+    </tr>
+    <tr>
+        <td>Author</td>
+        <td th:text="${bookToShowDetailsFor.author}"></td>
+    </tr>
+    <tr>
+        <td>Number of available copies</td>
+        <td th:text="${bookToShowDetailsFor.numberOfAvailableCopies}"></td>
+    </tr>
+</table>
+
+<a th:href="@{/book/all}">Back to overview</a>
+
+<table>
+    <tr>
+        <th>copyId</th>
+        <th>Availability status</th>
+    </tr>
+    <tr th:each="copy : ${bookToShowDetailsFor.copies}">
+        <td th:text="${copy.copyId}"></td>
+        <td th:if="${copy.available}">
+            <a th:href="@{/copy/borrow/{copyId}(copyId=${copy.copyId})}">Borrow</a>
+        </td>
+        <td th:unless="${copy.available}">
+            <a th:href="@{/copy/return/{copyId}(copyId=${copy.copyId})}">Return</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

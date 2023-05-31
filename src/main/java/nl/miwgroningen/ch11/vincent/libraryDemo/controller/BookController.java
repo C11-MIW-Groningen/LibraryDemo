@@ -49,6 +49,16 @@ public class BookController {
         return "redirect:/book/all";
     }
 
+    @PostMapping("/book/new")
+    private String saveOrUpdateBook(@ModelAttribute("book") Book bookToBeSaved, BindingResult result) {
+
+        if (!result.hasErrors()) {
+            bookRepository.save(bookToBeSaved);
+        }
+
+        return "redirect:/book/all";
+    }
+
     @GetMapping("/book/delete/{bookId}")
     private String deleteBook(@PathVariable("bookId") Long bookId) {
         Optional<Book> optionalBook = bookRepository.findById(bookId);
@@ -60,11 +70,14 @@ public class BookController {
         return "redirect:/book/all";
     }
 
-    @PostMapping("/book/new")
-    private String saveOrUpdateBook(@ModelAttribute("book") Book bookToBeSaved, BindingResult result) {
+    @GetMapping("/book/details/{title}")
+    private String showBookDetails(@PathVariable("title") String title, Model model) {
+        Optional<Book> optionalBook = bookRepository.findByTitle(title);
 
-        if (!result.hasErrors()) {
-            bookRepository.save(bookToBeSaved);
+        if (optionalBook.isPresent()) {
+            model.addAttribute("bookToShowDetailsFor", optionalBook.get());
+
+            return "bookDetails";
         }
 
         return "redirect:/book/all";
