@@ -26,8 +26,6 @@ public class Author {
     @Column(nullable = false)
     private String lastName;
 
-    private String artistName;
-
     public String getDisplayName() {
         String displayName = firstName;
 

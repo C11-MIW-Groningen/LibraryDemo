@@ -17,7 +17,14 @@
         </tr>
         <tr>
             <td><input type="text" th:field="*{title}" /></td>
-            <td><input type="text" th:field="*{author}" /></td>
+            <td>
+                <select th:field="*{authors}" multiple>
+                    <option th:each="author : ${allAuthors}"
+                            th:value="${author.authorId}"
+                            th:text="${author.displayName}">
+                    </option>
+                </select>
+            </td>
         </tr>
     </table>
 

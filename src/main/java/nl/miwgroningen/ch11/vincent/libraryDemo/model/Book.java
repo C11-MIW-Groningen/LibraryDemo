@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -20,7 +21,9 @@ public class Book {
 
     @Column(unique = true)
     private String title;
-    private String author;
+
+    @ManyToMany
+    private Set<Author> authors;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Copy> copies;
@@ -35,5 +38,15 @@ public class Book {
         }
 
         return count;
+    }
+
+    public String getAllAuthorsDisplayString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Author author : authors) {
+            stringBuilder.append(author.getDisplayName()).append(" ");
+        }
+
+        return stringBuilder.toString();
     }
 }
