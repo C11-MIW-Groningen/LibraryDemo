@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Create a new book</title>
-
-    <link rel="stylesheet" type="text/css" href="/css/library.css" />
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title>Create or edit a book</title>
 </head>
 <body>
 
-<h1>Create a new book</h1>
+<div th:replace="fragments/general :: navbar"></div>
 
-<form th:action="@{/book/new}" method="post" th:object="${book}">
-    <input type="hidden" th:field="*{bookId}">
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-        </tr>
-        <tr>
-            <td><input type="text" th:field="*{title}" /></td>
-            <td>
-                <select th:field="*{authors}" multiple>
-                    <option th:each="author : ${allAuthors}"
-                            th:value="${author.authorId}"
-                            th:text="${author.displayName}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-    </table>
+<div class="container">
+    <h1>Create a new book</h1>
 
-    <input type="submit" value="Save book" />
-</form>
+    <form th:action="@{/book/new}" method="post" th:object="${book}">
+        <input type="hidden" th:field="*{bookId}">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{title}" /></td>
+                <td>
+                    <select th:field="*{authors}" multiple>
+                        <option th:each="author : ${allAuthors}"
+                                th:value="${author.authorId}"
+                                th:text="${author.displayName}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Save book" />
+    </form>
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
+
 </body>
 </html>
