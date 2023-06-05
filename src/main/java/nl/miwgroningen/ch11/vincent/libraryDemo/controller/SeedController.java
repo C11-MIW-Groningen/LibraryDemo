@@ -9,7 +9,6 @@ import nl.miwgroningen.ch11.vincent.libraryDemo.repository.AuthorRepository;
 import nl.miwgroningen.ch11.vincent.libraryDemo.repository.BookRepository;
 import nl.miwgroningen.ch11.vincent.libraryDemo.repository.CopyRepository;
 import nl.miwgroningen.ch11.vincent.libraryDemo.repository.LibraryUserRepository;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +32,6 @@ public class SeedController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/seed")
-//    @Secured("ROLE_ADMIN")
     private String seedDatabase() {
         LibraryUser user = new LibraryUser();
         user.setUsername("user");

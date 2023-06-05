@@ -1,13 +1,10 @@
 package nl.miwgroningen.ch11.vincent.libraryDemo.configuration;
 
-import jdk.jfr.Registered;
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch11.vincent.libraryDemo.service.LibraryUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,7 +18,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true)
 @RequiredArgsConstructor
 public class LibraryDemoSecurityConfiguration {
     private final LibraryUserDetailsService libraryUserDetailsService;
