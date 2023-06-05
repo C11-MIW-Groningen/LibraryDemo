@@ -23,6 +23,7 @@ public class LibraryDemoKickstarter implements CommandLineRunner {
         if (libraryUserRepository.findByUsername("admin").isEmpty()) {
             LibraryUser admin = new LibraryUser();
             admin.setUsername("admin");
+            admin.setAdministrator(true);
             admin.setPassword(passwordEncoder.encode("changeThisNow"));
             libraryUserRepository.save(admin);
             System.err.println("Admin created remember to change the password!");
