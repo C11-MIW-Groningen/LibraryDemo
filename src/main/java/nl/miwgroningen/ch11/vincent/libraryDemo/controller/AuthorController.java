@@ -26,7 +26,6 @@ public class AuthorController {
 
     @GetMapping("/all")
     protected String showAuthorOverview(Model model) {
-        model.addAttribute("allAuthors", authorRepository.findAll());
         model.addAttribute("newAuthor", new Author());
         return "authorOverview";
     }
