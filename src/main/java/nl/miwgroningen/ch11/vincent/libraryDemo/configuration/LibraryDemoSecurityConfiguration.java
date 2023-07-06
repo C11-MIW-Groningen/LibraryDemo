@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -19,7 +20,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 @RequiredArgsConstructor
 public class LibraryDemoSecurityConfiguration {
     private final LibraryUserDetailsService libraryUserDetailsService;
@@ -29,11 +29,15 @@ public class LibraryDemoSecurityConfiguration {
         httpSecurity.authorizeHttpRequests((authorize) -> authorize
                         .antMatchers("/css/**", "/webjars/**").permitAll()
                         .antMatchers("/", "/book/all").permitAll()
+                        .antMatchers("/api/**").permitAll()
                         .antMatchers("/book/new").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin().and()
                 .logout().logoutSuccessUrl("/book/all");
+        httpSecurity
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         return httpSecurity.build();
     }
