@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
- * Somebody who can login to my system
+ * Somebody who can log in to my system
  */
 
 @Entity

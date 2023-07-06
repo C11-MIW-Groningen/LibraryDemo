@@ -1,6 +1,5 @@
 package nl.miwgroningen.ch11.vincent.libraryDemo.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import nl.miwgroningen.ch11.vincent.libraryDemo.model.Book;
 import nl.miwgroningen.ch11.vincent.libraryDemo.model.Copy;

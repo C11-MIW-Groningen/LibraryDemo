@@ -54,7 +54,8 @@ public class BookController {
     }
 
     @PostMapping("/book/new")
-    private String saveOrUpdateBook(@ModelAttribute("book") Book bookToBeSaved, BindingResult result) {
+//    @PreAuthorize("hasRole('ADMIN')")
+    public String saveOrUpdateBook(@ModelAttribute("book") Book bookToBeSaved, BindingResult result) {
 
         if (!result.hasErrors()) {
             bookRepository.save(bookToBeSaved);
@@ -67,9 +68,7 @@ public class BookController {
     private String deleteBook(@PathVariable("bookId") Long bookId) {
         Optional<Book> optionalBook = bookRepository.findById(bookId);
 
-        if (optionalBook.isPresent()) {
-            bookRepository.delete(optionalBook.get());
-        }
+        optionalBook.ifPresent(bookRepository::delete);
 
         return "redirect:/book/all";
     }

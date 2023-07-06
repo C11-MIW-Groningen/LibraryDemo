@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
- * Get some intial data in the database so I don't have to type everything everytime
+ * Get some intial data in the database, so I don't have to type everything everytime
  */
 
 @Controller
